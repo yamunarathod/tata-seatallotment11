@@ -473,7 +473,7 @@ const SeatingArrangement = () => {
     const fetchAttendedSeats = async () => {
       try {
 
-        const response = await axios.post('http://localhost:5000/api/attended-seats', {
+        const response = await axios.post('https://orca-app-zbdu3.ondigitalocean.app/api/attended-seats', {
           headers: {
             'Content-Type': 'application/json'
           }
