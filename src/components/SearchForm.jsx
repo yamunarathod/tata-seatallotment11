@@ -332,17 +332,29 @@ const SearchForm = () => {
   };
 
   const handleFormSubmit = async (e) => {
-    e.preventDefault();
-
+    e.preventDefault(); 
+  
+    // Use the state variables directly
+    const formData = {
+      role: role, 
+      code: code,
+      fullName: fullName
+    };
+    console.log("Form data:", formData);
+  
     try {
-      const response = await axios.post('https://orca-app-zbdu3.ondigitalocean.app/verify-code', { role, code });
-
+      const response = await axios.post('https://orca-app-zbdu3.ondigitalocean.app/verify-code', formData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
       if (response.data.success) {
         setSeatNumber(response.data.seatNumber);
         setIsAttended(response.data.isAttended);
         setMessage('Code verified successfully!');
-
-        // After successful verification, navigate to the seating arrangement page
+  
+        // Navigate to the seating arrangement page
         navigate('/seating', { state: { seatNumber: response.data.seatNumber } });
       } else {
         setMessage('Invalid code');
@@ -352,7 +364,7 @@ const SearchForm = () => {
       console.error(error);
     }
   };
-
+  
   return (
     <div className="min-h-screen w-full  flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-12 -mt-12">

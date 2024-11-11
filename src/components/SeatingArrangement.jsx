@@ -472,7 +472,14 @@ const SeatingArrangement = () => {
     // Fetch attended seats on component mount
     const fetchAttendedSeats = async () => {
       try {
-        const response = await axios.get('https://orca-app-zbdu3.ondigitalocean.app/api/attended-seats');
+
+        const response = await axios.post('http://localhost:5000/api/attended-seats', {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+
         setAttendedSeats(response.data);
         console.log(response.data,"jhgfdsdfghj")
       } catch (error) {
