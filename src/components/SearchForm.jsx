@@ -332,36 +332,27 @@ const SearchForm = () => {
   };
 
   const handleFormSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
   
-    // Use the state variables directly
-    const formData = {
-      role: role, 
-      code: code,
-      fullName: fullName
-    };
+    const formData = { role, code };
     console.log("Form data:", formData);
   
     try {
       const response = await axios.post('https://orca-app-zbdu3.ondigitalocean.app/verify-code', formData, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
+        headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.data.success) {
         setSeatNumber(response.data.seatNumber);
         setIsAttended(response.data.isAttended);
         setMessage('Code verified successfully!');
-  
-        // Navigate to the seating arrangement page
         navigate('/seating', { state: { seatNumber: response.data.seatNumber } });
       } else {
-        setMessage('Invalid code');
+        setMessage(response.data.message || 'Invalid code');
       }
     } catch (error) {
       setMessage('Error occurred while verifying the code');
-      console.error(error);
+      console.error("Verification error:", error.response?.data || error.message);
     }
   };
   
