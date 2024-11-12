@@ -338,6 +338,7 @@
 // export default Seat;
 
 
+
 import React, { useEffect, useState } from 'react';
 import emptySeatSvg from '../assets/unfilled.png';
 import bookedSeatSvg from '../assets/filled.png';
@@ -354,33 +355,33 @@ const Seat = ({ seatNumber, shouldFlip, isBooked, isAttended, onSeatClick }) => 
   }, [shouldFlip]);
 
   const seatStyle = {
-    padding: '1vh', // Responsive padding
-    margin: '0.5vh', // Responsive margin
-    width: '7vw', // Responsive width
-    height: '7vw', // Responsive height
+    padding: '1vh',
+    margin: '0.5vh',
+    width: '7vw',
+    height: '7vw',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'pointer',
     position: 'relative',
-    overflow: 'visible', // Ensure the popup stays visible
+    overflow: 'visible',
   };
 
   const popupStyle = {
     position: 'absolute',
-    top: '-4vh', // Position above the seat, responsive
+    top: '-4vh',
     left: '50%',
     transform: 'translateX(-50%)',
     backgroundColor: 'white',
-    border: '1px solid black', // Slightly smaller border for responsiveness
-    borderRadius: '20px',
-    padding: '0.5vh 1vh', // Responsive padding
-    fontSize: '2.5vw', // Responsive font size
+    border: '1px solid #FAA31F',
+    borderRadius: '10px',
+    padding: '0.5vh 1vh',
+    fontSize: '2.5vw',
     fontWeight: 'bold',
-    animation: shouldFlip ? 'popup 0.3s ease' : 'none', // Only animate if shouldFlip is true
+    animation: shouldFlip ? 'popup 0.3s ease' : 'none',
     whiteSpace: 'nowrap',
     boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-    zIndex: 10, // Ensure the popup stays above the seat
+    zIndex: 10,
     opacity: hasPopped ? 1 : 0, // Show permanently once popped
   };
 
@@ -395,7 +396,7 @@ const Seat = ({ seatNumber, shouldFlip, isBooked, isAttended, onSeatClick }) => 
 
   return (
     <div style={seatStyle} onClick={handleClick}>
-      {(shouldFlip || hasPopped) && ( // Display popup if shouldFlip or hasPopped
+      {(shouldFlip || hasPopped) && (
         <div style={popupStyle}>
           {seatNumber}
         </div>
@@ -407,10 +408,9 @@ const Seat = ({ seatNumber, shouldFlip, isBooked, isAttended, onSeatClick }) => 
           width: '100%', 
           height: '100%', 
           transform: isBooked ? 'scale(2.5)' : 'scale(2)', 
-          transition: 'transform 0.3s ease' // Smooth transition for scaling
+          transition: 'transform 0.3s ease',
         }} 
       />
-      {!isBooked && <span style={{ position: 'absolute' }}>{}</span>}
     </div>
   );
 };
