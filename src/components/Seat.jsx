@@ -356,8 +356,8 @@ const Seat = ({ seatNumber, shouldFlip, isBooked, isAttended, onSeatClick }) => 
   const seatStyle = {
     padding: '1vh', // Responsive padding
     margin: '0.5vh', // Responsive margin
-    width: '5vw', // Responsive width
-    height: '5vw', // Responsive height
+    width: '7vw', // Responsive width
+    height: '7vw', // Responsive height
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

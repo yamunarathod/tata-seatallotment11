@@ -586,6 +586,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     padding: '40px',
+    marginTop:'40px'
   },
   button: {
     marginBottom: '20px',
