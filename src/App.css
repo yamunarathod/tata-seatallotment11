@@ -4,35 +4,46 @@
 } */
 
 
-
+/* Default Popup Animation */
 @keyframes popup {
-    0% {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
   }
-  
-  body,html{
-    background-image: url(../bg.png);
-    background-position: center;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
+}
 
-  @keyframes popup {
-    0% {
-      opacity: 0;
-      transform: translateX(-50%) translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-  }
+/* Responsive Background for Mobile Devices */
+body, html {
+  background-image: url(../bg.png);
+  background-position: center;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
 
-  
+/* Extra Small Devices (phones, less than 576px) */
+@media (max-width: 576px) {
+  .seat-container {
+    flex-direction: column;
+    padding: 2vh; /* Add padding */
+  }
+}
+
+/* Small Devices (tablets, 576px to 768px) */
+@media (min-width: 576px) and (max-width: 768px) {
+  .seat-container {
+    flex-direction: row;
+    padding: 3vh;
+  }
+}
+
+/* Medium Devices (desktop, 768px and up) */
+@media (min-width: 768px) {
+  .seat-container {
+    padding: 4vh;
+  }
+}
