@@ -368,7 +368,7 @@ const Seat = ({ seatNumber, shouldFlip, isBooked, isAttended, onSeatClick }) => 
 
   const popupStyle = {
     position: 'absolute',
-    top: '-6vh', // Position above the seat, responsive
+    top: '-4vh', // Position above the seat, responsive
     left: '50%',
     transform: 'translateX(-50%)',
     backgroundColor: 'white',
