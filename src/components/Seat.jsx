@@ -102,74 +102,74 @@
 
 
 
-import React from 'react';
-import emptySeatSvg from '../assets/unfilled.png';
-import bookedSeatSvg from '../assets/filled.png';
-import '../App.css';
+// import React from 'react';
+// import emptySeatSvg from '../assets/unfilled.png';
+// import bookedSeatSvg from '../assets/filled.png';
+// import '../App.css';
 
-const Seat = ({ seatNumber, shouldFlip, isBooked, isAttended, onSeatClick }) => {
-  const seatStyle = {
-    padding: '10px',
-    margin: '5px',
-    width: '33px',
-    height: '33px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    position: 'relative',
-    overflow: 'visible', // Ensure the popup stays visible
-  };
+// const Seat = ({ seatNumber, shouldFlip, isBooked, isAttended, onSeatClick }) => {
+//   const seatStyle = {
+//     padding: '10px',
+//     margin: '5px',
+//     width: '33px',
+//     height: '33px',
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     cursor: 'pointer',
+//     position: 'relative',
+//     overflow: 'visible', // Ensure the popup stays visible
+//   };
 
-  const popupStyle = {
-    position: 'absolute',
-    top: '-40px', // Position above the seat
-    left: '50%',
-    transform: 'translateX(-50%)',
-    backgroundColor: 'white',
-    border: '2px solid black',
-    borderRadius: '50px',
-    padding: '5px 15px',
-    fontSize: '14px',
-    fontWeight: 'bold',
-    animation: shouldFlip ? 'popup 0.3s ease' : 'none',
-    whiteSpace: 'nowrap',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-    zIndex: 10, // Ensure the popup stays above the seat
-  };
+//   const popupStyle = {
+//     position: 'absolute',
+//     top: '-40px', // Position above the seat
+//     left: '50%',
+//     transform: 'translateX(-50%)',
+//     backgroundColor: 'white',
+//     border: '2px solid black',
+//     borderRadius: '50px',
+//     padding: '5px 15px',
+//     fontSize: '14px',
+//     fontWeight: 'bold',
+//     animation: shouldFlip ? 'popup 0.3s ease' : 'none',
+//     whiteSpace: 'nowrap',
+//     boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+//     zIndex: 10, // Ensure the popup stays above the seat
+//   };
 
-  const handleClick = (e) => {
-    if (onSeatClick) {
-      onSeatClick(seatNumber, {
-        x: e.currentTarget.getBoundingClientRect().left + 16,
-        y: e.currentTarget.getBoundingClientRect().top,
-      });
-    }
-  };
+//   const handleClick = (e) => {
+//     if (onSeatClick) {
+//       onSeatClick(seatNumber, {
+//         x: e.currentTarget.getBoundingClientRect().left + 16,
+//         y: e.currentTarget.getBoundingClientRect().top,
+//       });
+//     }
+//   };
 
-  return (
-    <div style={seatStyle} onClick={handleClick}>
-      {shouldFlip && (
-        <div style={popupStyle}>
-          {seatNumber}
-        </div>
-      )}
-      <img 
-        src={isBooked ? bookedSeatSvg : emptySeatSvg} 
-        alt="Seat" 
-        style={{ 
-          width: '100%', 
-          height: '100%', 
-          transform: isBooked ? 'scale(2.5)' : 'scale(2)', 
-          transition: 'transform 0.3s ease' // Smooth transition for scaling
-        }} 
-      />
-      {!isBooked && <span style={{ position: 'absolute' }}>{}</span>}
-    </div>
-  );
-};
+//   return (
+//     <div style={seatStyle} onClick={handleClick}>
+//       {shouldFlip && (
+//         <div style={popupStyle}>
+//           {seatNumber}
+//         </div>
+//       )}
+//       <img 
+//         src={isBooked ? bookedSeatSvg : emptySeatSvg} 
+//         alt="Seat" 
+//         style={{ 
+//           width: '100%', 
+//           height: '100%', 
+//           transform: isBooked ? 'scale(2.5)' : 'scale(2)', 
+//           transition: 'transform 0.3s ease' // Smooth transition for scaling
+//         }} 
+//       />
+//       {!isBooked && <span style={{ position: 'absolute' }}>{}</span>}
+//     </div>
+//   );
+// };
 
-export default Seat;
+// export default Seat;
 
 
 
@@ -254,3 +254,85 @@ export default Seat;
 // };
 
 // export default Seat;
+
+
+
+
+import React, { useEffect, useState } from 'react';
+import emptySeatSvg from '../assets/unfilled.png';
+import bookedSeatSvg from '../assets/filled.png';
+import '../App.css';
+
+const Seat = ({ seatNumber, shouldFlip, isBooked, isAttended, onSeatClick }) => {
+  const [hasPopped, setHasPopped] = useState(false); // Track if the seat has already been popped
+
+  useEffect(() => {
+    // If shouldFlip is true, set hasPopped to true
+    if (shouldFlip) {
+      setHasPopped(true);
+    }
+  }, [shouldFlip]);
+
+  const seatStyle = {
+    padding: '10px',
+    margin: '5px',
+    width: '33px',
+    height: '33px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    position: 'relative',
+    overflow: 'visible', // Ensure the popup stays visible
+  };
+
+  const popupStyle = {
+    position: 'absolute',
+    top: '-40px', // Position above the seat
+    left: '50%',
+    transform: 'translateX(-50%)',
+    backgroundColor: 'white',
+    border: '2px solid black',
+    borderRadius: '50px',
+    padding: '5px 15px',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    animation: shouldFlip ? 'popup 0.3s ease' : 'none', // Only animate if shouldFlip is true
+    whiteSpace: 'nowrap',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+    zIndex: 10, // Ensure the popup stays above the seat
+    opacity: hasPopped ? 1 : 0, // Show permanently once popped
+  };
+
+  const handleClick = (e) => {
+    if (onSeatClick) {
+      onSeatClick(seatNumber, {
+        x: e.currentTarget.getBoundingClientRect().left + 16,
+        y: e.currentTarget.getBoundingClientRect().top,
+      });
+    }
+  };
+
+  return (
+    <div style={seatStyle} onClick={handleClick}>
+      {(shouldFlip || hasPopped) && ( // Display popup if shouldFlip or hasPopped
+        <div style={popupStyle}>
+          {seatNumber}
+        </div>
+      )}
+      <img 
+        src={isBooked ? bookedSeatSvg : emptySeatSvg} 
+        alt="Seat" 
+        style={{ 
+          width: '100%', 
+          height: '100%', 
+          transform: isBooked ? 'scale(2.5)' : 'scale(2)', 
+          transition: 'transform 0.3s ease' // Smooth transition for scaling
+        }} 
+      />
+      {!isBooked && <span style={{ position: 'absolute' }}>{}</span>}
+    </div>
+  );
+};
+
+export default Seat;
