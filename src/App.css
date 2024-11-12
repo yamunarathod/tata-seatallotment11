@@ -18,6 +18,9 @@
 
 /* Responsive Background for Mobile Devices */
 body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
   background-image: url(../bg.png);
   background-position: center;
   background-size: cover;
@@ -42,8 +45,18 @@ body, html {
 }
 
 /* Medium Devices (desktop, 768px and up) */
-@media (min-width: 768px) {
-  .seat-container {
-    padding: 4vh;
+@media (max-width: 768px) {
+  .popupStyle {
+    font-size: 4vw; /* Increase popup font size */
+    padding: 1vh 3vh; /* More padding */
   }
+
+  .seatStyle {
+    width: 8vw;
+    height: 8vw;
+    padding: 1.5vh;
+  }
+}
+.container {
+  scroll-behavior: smooth;
 }
