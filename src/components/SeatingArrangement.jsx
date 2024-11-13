@@ -568,7 +568,6 @@ const SeatingArrangement = () => {
   
   return (
     <div style={styles.container}>
-      <button onClick={() => flipSeat(seatNumber)} style={styles.button}> </button>
       {rows.map((rowNumber) => (
         <div key={rowNumber} style={styles.rowContainer}>
           <div style={styles.row}>
@@ -585,8 +584,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '40px',
-    marginTop:'30px'
+    padding: '10px',
+    marginTop:'20px'
   },
   button: {
     marginBottom: '20px',
