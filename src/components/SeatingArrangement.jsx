@@ -917,6 +917,13 @@ const SeatingArrangement = () => {
   };
 
   return (
+    <div style={styles.mainContainer}>
+       <div style={styles.textContainer}>
+    <h1 style={styles.heading}>Find your seat</h1>
+  </div>
+    <div style={styles.imageContainer}>
+      <img src="../stage.png" alt="Centered Image" style={styles.image} />
+    </div>
     <div style={styles.container}>
       {rows.map((rowNumber) => (
         <div key={rowNumber} style={styles.rowContainer}>
@@ -924,16 +931,45 @@ const SeatingArrangement = () => {
         </div>
       ))}
     </div>
+  </div>
+  
   );
 };
-
 const styles = {
+  mainContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: '10vh',
+  },
+  textContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: '25px', // Space between the text and the image
+  },
+  heading: {
+    fontSize: '24px', // Adjust as needed
+    fontWeight: 'bold',
+    color: '#ECB60D', // Adjust text color as needed
+  },
+  imageContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: '30px', // Space between the image and the seating arrangement
+  },
+  image: {
+    width: '200px', // Adjust as needed
+    height: 'auto',
+    objectFit: 'contain', // Ensures the image is not distorted
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     padding: '10px',
-    marginTop: '10vh',
   },
   button: {
     marginBottom: '20px',
