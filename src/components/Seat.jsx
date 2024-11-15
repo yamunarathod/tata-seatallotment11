@@ -339,6 +339,10 @@
 
 
 
+
+
+
+
 import React, { useEffect, useState } from 'react';
 import emptySeatSvg from '../assets/unfilled.png';
 import bookedSeatSvg from '../assets/filled.png';
